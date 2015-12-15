@@ -27,6 +27,10 @@ app.config(function($routeProvider){
     templateUrl: "/views/companyLists/companyLists.html",
     controller: 'routeCtrlShow'
   });
+  $routeProvider.when('/company/:index', {
+    templateUrl: "/views/companyTemplate.html",
+    controller: 'routeCtrlShow'
+  })
   $routeProvider.when('/google',{
     templateUrl: "/views/google/google.html",
     controller: 'routeCtrlShow'
@@ -123,12 +127,13 @@ app.factory('loginServ', function() {
 
    var companies = [google, nutshell, instagram ,apple, yahoo];
 
-  return {tSwift, google, instagram, nutshell, apple, yahoo
-  };
+
+
+  return {tSwift, google, instagram, nutshell, apple, yahoo, companies};
 });
 
 // Controller for data
-app.controller("routeCtrlShow", function($scope, $localStorage, $http, loginServ) {
+app.controller("routeCtrlShow", function($scope, $routeParams, $localStorage, $http, loginServ) {
   // $("#navbar_icon").css("visibility","visible");
   // $scope.saveData = function() {
   //   $localStorage.message = "Hello World";
@@ -138,6 +143,11 @@ app.controller("routeCtrlShow", function($scope, $localStorage, $http, loginServ
   // $scope.loadData = function() {
   //   $scope.message = $localStorage.message;
   // };
+  // 
+
+  console.log($routeParams);
+
+  Object.assign($scope, loginServ.companies[$routeParams.index])
 
   if(loggedIn){
     // Taylor
@@ -193,7 +203,7 @@ app.controller("routeCtrlShow", function($scope, $localStorage, $http, loginServ
     if (username.value === "taylorswift" && password.value === "taylorswift") {
       console.log("ok lets do this");
       load("#/profile");
-      loggedIn=true;
+      loggedIn = true;
     } else {
       alert("Please enter correct information");
       load("fail.html");
@@ -223,14 +233,14 @@ console.log("You did NOT NOT NOT it");    // called asynchronously if an error o
 // or server returns response with an error status.
 });
 
-var myVar = setInterval(myTimer, 4000);
+var myVar = setInterval(myTimer, 10000);
 var current = 0;
 function myTimer() {
   var tag = $scope.pictures[current];
   var container = document.getElementById("foo");
   console.log(container);
 
-  container.src=tag;
+  // container.src=tag;
 
 //If we're at our max (minus 1 because of 0 based index) then reset
 if (current == $scope.pictures.length - 1) {
