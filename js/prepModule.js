@@ -30,26 +30,6 @@ app.config(function($routeProvider){
   $routeProvider.when('/company/:index', {
     templateUrl: "/views/companyTemplate.html",
     controller: 'routeCtrlShow'
-  })
-  $routeProvider.when('/google',{
-    templateUrl: "/views/google/google.html",
-    controller: 'routeCtrlShow'
-  });
-  $routeProvider.when('/apple',{
-    templateUrl: "/views/apple/apple.html",
-    controller: 'routeCtrlShow'
-  });
-  $routeProvider.when('/instaGram',{
-    templateUrl: "/views/instaGram/instaGram.html",
-    controller: 'routeCtrlShow'
-  });
-  $routeProvider.when('/nutShell',{
-    templateUrl: "/views/nutShell/nutShell.html",
-    controller: 'routeCtrlShow'
-  });
-  $routeProvider.when('/yahoo',{
-    templateUrl: "/views/yahoo/yahoo.html",
-    controller: 'routeCtrlShow'
   });
 
 });
